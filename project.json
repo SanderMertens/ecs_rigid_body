@@ -1,0 +1,18 @@
+{
+    "id": "ecs_rigid_body",
+    "type": "application",
+    "value": {
+        "author": "Jane Doe",
+        "description": "A simple hello world flecs application",
+        "use": [
+            "flecs",
+            "flecs.math",
+            "flecs.components.transform",
+            "flecs.components.physics",
+            "flecs.components.geometry",
+            "flecs.components.graphics",
+            "flecs.systems.physics",
+            "flecs.systems.sdl2"
+        ]
+    }
+}
