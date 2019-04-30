@@ -12,19 +12,22 @@ int main(int argc, char *argv[]) {
     ECS_IMPORT(world, FlecsSystemsPhysics, 0);
     ECS_IMPORT(world, FlecsSystemsSdl2, 0);
 
-    ECS_TYPE(world, Ball, EcsPosition2D, EcsVelocity2D, EcsCollider, EcsCircle, EcsRigidBody, EcsBounciness, EcsColor);
+    ECS_PREFAB(world, BallPrefab, EcsCollider, EcsCircle, EcsBounciness, EcsRigidBody);
+    ECS_TYPE(world, Ball, BallPrefab, EcsPosition2D, EcsVelocity2D, EcsColor);
 
     ECS_ENTITY(world, LeftWall, EcsPosition2D, EcsCollider, EcsRectangle);
     ECS_ENTITY(world, BottomWall, EcsPosition2D, EcsCollider, EcsRectangle);
     ECS_ENTITY(world, RightWall, EcsPosition2D, EcsCollider, EcsRectangle);
 
-    for (int i = 0; i < 100; i ++) {
+    /* Initialize Ball prefab */
+    ecs_set(world, BallPrefab, EcsBounciness, {0.7});
+    ecs_set(world, BallPrefab, EcsCircle, {0.5});
+
+    for (int i = 0; i < 200; i ++) {
         ecs_entity_t e = ecs_new(world, Ball);
         ecs_set(world, e, EcsPosition2D, {ecs_randf(36) - 18, ecs_randf(60) - 45});
         ecs_set(world, e, EcsVelocity2D, {ecs_randf(10) - 5, ecs_randf(10) - 5});
         ecs_set(world, e, EcsColor, {ecs_randf(255), ecs_randf(255), ecs_randf(255), 255});
-        ecs_set(world, e, EcsBounciness, {0.7});
-        ecs_set(world, e, EcsCircle, {0.5});
     }
 
     /* Initialize walls */
