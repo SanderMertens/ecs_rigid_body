@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     ECS_IMPORT(world, FlecsSystemsSdl2, 0);
 
     ECS_PREFAB(world, BallPrefab, EcsCollider, EcsCircle, EcsBounciness, EcsRigidBody);
-    ECS_TYPE(world, Ball, BallPrefab, EcsPosition2D, EcsVelocity2D, EcsColor);
+    ECS_TYPE(world, Ball, INSTANCEOF | BallPrefab, EcsPosition2D, EcsVelocity2D, EcsColor);
 
     ECS_ENTITY(world, LeftWall, EcsPosition2D, EcsCollider, EcsRectangle);
     ECS_ENTITY(world, BottomWall, EcsPosition2D, EcsCollider, EcsRectangle);
